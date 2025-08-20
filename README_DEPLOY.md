@@ -103,6 +103,11 @@ vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY
 - **Убедитесь**, что все зависимости указаны в `package.json`
 - **Проверьте переменные среды**
 
+### Ошибка "Module not found: Can't resolve '@/context/AppContext'":
+- ✅ **Исправлено**: Убраны исключения важных файлов из `.vercelignore`
+- **Конфигурационные файлы** (`next.config.ts`, `tsconfig.json`) теперь включены
+- **Все компоненты и контексты** доступны для сборки
+
 ### Ошибка "Environment Variable references Secret which does not exist":
 - ✅ **Исправлено**: Убраны ссылки на секреты из `vercel.json`
 - **Переменные среды настраиваются вручную** в Vercel Dashboard
