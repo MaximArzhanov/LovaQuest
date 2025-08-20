@@ -11,18 +11,10 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
 
-  // Оптимизации для Vercel
-  output: 'standalone',
-  
   // Оптимизация изображений
   images: {
     domains: ['localhost'],
     unoptimized: false,
-  },
-
-  // Оптимизация сборки
-  experimental: {
-    optimizePackageImports: ['lucide-react'],
   },
 
   // Заголовки безопасности
