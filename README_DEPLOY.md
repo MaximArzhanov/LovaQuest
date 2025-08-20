@@ -11,7 +11,7 @@
 ### Проверьте наличие файлов:
 - ✅ `package.json` - зависимости и скрипты
 - ✅ `next.config.ts` - конфигурация Next.js
-- ✅ `vercel.json` - конфигурация Vercel
+- ✅ `vercel.json` - конфигурация Vercel (упрощенная)
 - ✅ `.vercelignore` - исключения для деплоя
 - ✅ `.env.local` - переменные среды (НЕ загружать в Git!)
 
@@ -30,7 +30,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 3. **Нажмите "New Project"**
 4. **Выберите репозиторий** `MaximArzhanov/LovaQuest`
 5. **Настройте проект**:
-   - **Framework Preset**: Next.js
+   - **Framework Preset**: Next.js (автоматически определится)
    - **Root Directory**: `./` (по умолчанию)
    - **Build Command**: `npm run build` (по умолчанию)
    - **Output Directory**: `.next` (по умолчанию)
@@ -95,6 +95,11 @@ vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY
 - **Проверьте логи** в Vercel Dashboard
 - **Убедитесь**, что все зависимости указаны в `package.json`
 - **Проверьте переменные среды**
+
+### Ошибка "The `functions` property cannot be used in conjunction with the `builds` property":
+- ✅ **Исправлено**: Упрощен `vercel.json` для совместимости с новыми версиями Vercel
+- **Vercel автоматически определит** Next.js проект и настроит сборку
+- **Не требуется** указывать `builds` или `functions` вручную
 
 ### Ошибки Supabase:
 - **Проверьте URL и ключ** в переменных среды
