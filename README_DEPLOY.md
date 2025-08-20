@@ -11,14 +11,17 @@
 ### Проверьте наличие файлов:
 - ✅ `package.json` - зависимости и скрипты
 - ✅ `next.config.ts` - конфигурация Next.js
-- ✅ `vercel.json` - конфигурация Vercel (упрощенная)
+- ✅ `vercel.json` - минимальная конфигурация Vercel
 - ✅ `.vercelignore` - исключения для деплоя
 - ✅ `.env.local` - переменные среды (НЕ загружать в Git!)
+
+### ⚠️ **ВАЖНО**: Переменные среды НЕ настраиваются в vercel.json!
+Переменные среды нужно будет добавить **вручную** в Vercel Dashboard после создания проекта.
 
 ### Переменные среды для продакшена:
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 ```
 
 ## 🌐 Шаг 2: Деплой на Vercel
@@ -35,6 +38,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
    - **Build Command**: `npm run build` (по умолчанию)
    - **Output Directory**: `.next` (по умолчанию)
    - **Install Command**: `npm install` (по умолчанию)
+6. **Нажмите "Deploy"** (без настройки переменных среды)
 
 ### Вариант B: Через Vercel CLI
 
@@ -53,17 +57,20 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
    vercel
    ```
 
-## ⚙️ Шаг 3: Настройка переменных среды
+## ⚙️ Шаг 3: Настройка переменных среды (ОБЯЗАТЕЛЬНО!)
+
+### ⚠️ **КРИТИЧЕСКИ ВАЖНО**: Без этих переменных приложение НЕ будет работать!
 
 ### В веб-интерфейсе Vercel:
-1. **Перейдите в Settings → Environment Variables**
+1. **После создания проекта** перейдите в **Settings → Environment Variables**
 2. **Добавьте переменные**:
    ```
-   NEXT_PUBLIC_SUPABASE_URL = https://your-project.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY = your_anon_key
+   NEXT_PUBLIC_SUPABASE_URL = https://yjlchrbmqcqtjrbnbdhz.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqbGNocmJtcWNxdGpyYm5iZGh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUxODg4NTUsImV4cCI6MjA3MDc2NDg1NX0.7T5_kwTEIe-eS6ZrZplHct6j-rp5eiBPSNKFW1KvL7U
    ```
-3. **Выберите Environment**: Production, Preview, Development
+3. **Выберите Environment**: ✅ Production, ✅ Preview, ✅ Development
 4. **Нажмите Save**
+5. **Перезапустите деплой** (Redeploy) для применения переменных
 
 ### Через CLI:
 ```bash
@@ -96,6 +103,11 @@ vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY
 - **Убедитесь**, что все зависимости указаны в `package.json`
 - **Проверьте переменные среды**
 
+### Ошибка "Environment Variable references Secret which does not exist":
+- ✅ **Исправлено**: Убраны ссылки на секреты из `vercel.json`
+- **Переменные среды настраиваются вручную** в Vercel Dashboard
+- **После настройки переменных** обязательно перезапустите деплой
+
 ### Ошибка "The `functions` property cannot be used in conjunction with the `builds` property":
 - ✅ **Исправлено**: Упрощен `vercel.json` для совместимости с новыми версиями Vercel
 - **Vercel автоматически определит** Next.js проект и настроит сборку
@@ -105,6 +117,7 @@ vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY
 - **Проверьте URL и ключ** в переменных среды
 - **Убедитесь**, что RLS политики настроены
 - **Проверьте**, что база данных доступна
+- **Переменные среды должны быть добавлены** в Vercel Dashboard
 
 ### Проблемы с изображениями:
 - **Настройте домены** в `next.config.ts`
